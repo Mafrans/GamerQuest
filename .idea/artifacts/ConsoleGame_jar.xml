@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ConsoleGame:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ConsoleGame_jar</output-path>
+    <root id="archive" name="ConsoleGame.jar">
+      <element id="module-output" name="ConsoleGame" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/fusesource/jansi/jansi/1.11/jansi-1.11.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
