@@ -3,48 +3,17 @@ package me.mafrans.consolegame.areas;
 import me.mafrans.consolegame.App;
 import me.mafrans.consolegame.util.CommandRunnable;
 import me.mafrans.consolegame.util.Description;
+import me.mafrans.consolegame.util.image.AsciiArtGenerator;
+import org.fusesource.jansi.Ansi;
 
 public class TitleScreen extends AbstractArea {
     @Override
     public Description getDescription() {
-        String title =  "  /$$$$$$                                             \n" +
-                        " /$$__  $$                                            \n" +
-                        "| $$  \\__/  /$$$$$$  /$$$$$$/$$$$   /$$$$$$   /$$$$$$ \n" +
-                        "| $$ /$$$$ |____  $$| $$_  $$_  $$ /$$__  $$ /$$__  $$\n" +
-                        "| $$|_  $$  /$$$$$$$| $$ \\ $$ \\ $$| $$$$$$$$| $$  \\__/\n" +
-                        "| $$  \\ $$ /$$__  $$| $$ | $$ | $$| $$_____/| $$      \n" +
-                        "|  $$$$$$/|  $$$$$$$| $$ | $$ | $$|  $$$$$$$| $$      \n" +
-                        " \\______/  \\_______/|__/ |__/ |__/ \\_______/|__/      \n" +
-                        " \n" +
-                        "  /$$$$$$                                  /$$    \n" +
-                        " /$$__  $$                                | $$    \n" +
-                        "| $$  \\ $$ /$$   /$$  /$$$$$$   /$$$$$$$ /$$$$$$  \n" +
-                        "| $$  | $$| $$  | $$ /$$__  $$ /$$_____/|_  $$_/  \n" +
-                        "| $$  | $$| $$  | $$| $$$$$$$$|  $$$$$$   | $$    \n" +
-                        "| $$/$$ $$| $$  | $$| $$_____/ \\____  $$  | $$ /$$\n" +
-                        "|  $$$$$$/|  $$$$$$/|  $$$$$$$ /$$$$$$$/  |  $$$$/\n" +
-                        " \\____ $$$ \\______/  \\_______/|_______/    \\___/  ";
+        Ansi ansi = AsciiArtGenerator.createFrom("title");
 
-        StringBuilder stringBuilder = new StringBuilder();
-        for(char c : title.toCharArray()) {
-            if(c == '$') {
-                stringBuilder.append("@|cyan ").append(c).append("|@");
-            }
-            else {
-                stringBuilder.append("@|blue ").append(c).append("|@");
-            }
-        }
+        ansi.a("\n").a(Description.HORIZONTAL_LINE).a("\nWelcome to Gamer Quest!").a("\n(1) Start Game").a("\n(2) Settings").a(Description.HORIZONTAL_LINE).a("\n\n\n");
 
-        stringBuilder
-                .append("\n")
-                .append(Description.HORIZONTAL_LINE)
-                .append("\nWelcome to Gamer Quest!")
-                .append("\n(1) Start Game")
-                .append("\n(2) Settings")
-                .append(Description.HORIZONTAL_LINE)
-                .append("\n\n\n");
-
-        return new Description(stringBuilder.toString());
+        return new Description(ansi.reset().toString());
     }
 
     @Override
@@ -52,7 +21,7 @@ public class TitleScreen extends AbstractArea {
         return new CommandRunnable() {
             @Override
             public void run(String command, String[] args) {
-                if(command.equals("1")) {
+                if (command.equals("1")) {
                     App.self.startRun();
                 }
             }
